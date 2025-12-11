@@ -1,16 +1,44 @@
-# React + Vite
+# Herz&Seele — Informationsseite zu Depressionen
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Kurzbeschreibung
+Herz&Seele ist eine kleine, statische Informationsseite (Deutsch) mit verständlichen Erklärungen, ersten Schritten und seriösen Anlaufstellen bei Depressionen. Die Seite ist nicht als Ersatz für medizinische Beratung gedacht.
 
-Currently, two official plugins are available:
+Features
+- Einfache, einseitige Struktur: `index.html` + `style.css`.
+- Klarer Fokus auf Erstinformationen, Hilfestellungen und Krisenhinweise.
+- Barrierefreundliche Elemente: `skip-link`, ARIA-Attribute.
+- Automatische Jahresanzeige per kleinem Script.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Dateiübersicht
+- `index.html` : Hauptseite (Inhalte auf Deutsch)
+- `style.css`  : Styles und Layout
+- `README.md`  : Projektbeschreibung (diese Datei)
 
-## React Compiler
+Lokales Testen
+- Direkter Schnelltest: Öffne `index.html` im Browser.
+- Lokaler Server (empfohlen): Im Projektordner z. B. mit Python:
+  - `python -m http.server 8000`
+  - Dann im Browser: `http://localhost:8000`
+- Alternative (Node): `npx serve .`
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Barrierefreiheit & Sicherheitshinweise
+- `skip-link` ermöglicht Tastatur-Nutzer*innen das Überspringen von Navigation.
+- Navigation hat `aria-label`; dekorative Elemente sind `aria-hidden="true"`.
+- Kein Ersatz für professionelle Hilfe — akute Krise: Notruf `112` oder Bereitschaftsdienst `116 117`.
 
-## Expanding the ESLint configuration
+Anpassung & Entwicklung
+- Inhalte bearbeiten: einfach `index.html` anpassen (Texte, Telefonnummern, regionale Links).
+- Styling ändern: `style.css` editieren; Komponenten sind modular gehalten.
+- Mehrsprachigkeit: Dateien duplizieren oder kleines JS zur Sprachumschaltung ergänzen.
+- Ressourcen zentralisieren: Überlege eine JSON-Datei für externe Links, um Inhalte leichter zu pflegen.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Verbesserungsvorschläge (kurz)
+- Open Graph / Social-Meta-Tags ergänzen.
+- Formular für Kontaktaufnahme oder Low-threshold-Hilfen hinzufügen (Datenschutz beachten).
+- HTML-Validierung und Accessibility-Checks ins CI integrieren.
+- Rechtliches: Impressum und Datenschutzerklärung ergänzen bevor öffentlich gemacht wird.
+
+Nützliche Links / Danksagung
+- TelefonSeelsorge: https://www.telefonseelsorge.de
+- Stiftung Deutsche Depressionshilfe: https://www.deutsche-depressionshilfe.de
+- 116117: https://www.116117.de
