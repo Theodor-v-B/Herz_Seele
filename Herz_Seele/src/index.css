@@ -320,3 +320,18 @@ h3{ font-size: clamp(1.1rem, .8vw + 1rem, 1.3rem); }
 .soothing h2 {
   margin-top: 12px;
 }
+
+/* ====== PLZ input feld grün ====== */
+.input-plz{
+  background-color: rgba(120,255,214,.25);
+  border-color: rgba(120,255,214,.35);
+}
+
+.input-plz:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(120,255,214,.35);
+}
+
+.input-plz::placeholder{
+  color: rgba(255,255,255,.7);
+}

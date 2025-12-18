@@ -6,7 +6,7 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
+// Zwischenstation im Programmablauf
 app.use(express.json());
 
 // CORS: React/Vite darf an dieses Backend schicken
@@ -158,36 +158,13 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "Backend läuft 🚀" });
 });
 
-// Abfrage per PLZ: /api/anlaufstellen?plz=10115
+// ✅ EINE Route: Suche nach PLZ ODER Stadt (oder beidem)
 app.get("/api/anlaufstellen", (req, res) => {
-  const { plz } = req.query;
-
-  if (!plz) {
-    return res.status(400).json({ error: "PLZ fehlt" });
-  }
-
-  db.all(
-    "SELECT stadt, name, strasse, telefon FROM anlaufstellen WHERE plz = ?",
-    [String(plz).trim()],
-    (err, rows) => {
-      if (err) {
-        console.error("DB Fehler:", err.message);
-        return res.status(500).json({ error: "Datenbankfehler" });
-      }
-
-      res.json({ results: rows });
-    }
-  );
-});
-
-// Abfrage: /api/anlaufstellen?plz=10115
-
-app.get("/api/anlaufstellen", (req, res) => {
-  const plz = (req.query.plz || "").trim();
-  const stadt = (req.query.stadt || "").trim();
+  const plz = String(req.query.plz || "").trim();
+  const stadt = String(req.query.stadt || "").trim();
 
   if (!plz && !stadt) {
-    return res.status(400).json({ error: "Bitte plz oder stadt angeben." });
+    return res.status(400).json({ error: "Bitte PLZ oder Stadt angeben." });
   }
 
   let sql = "SELECT stadt, plz, name, strasse, telefon FROM anlaufstellen WHERE 1=1";
@@ -198,10 +175,13 @@ app.get("/api/anlaufstellen", (req, res) => {
     params.push(plz);
   }
 
+  // Case-insensitive Stadt-Suche
   if (stadt) {
-    sql += " AND stadt = ?";
+    sql += " AND LOWER(stadt) = LOWER(?)";
     params.push(stadt);
   }
+
+  sql += " ORDER BY stadt ASC, plz ASC, name ASC";
 
   db.all(sql, params, (err, rows) => {
     if (err) {
@@ -212,7 +192,7 @@ app.get("/api/anlaufstellen", (req, res) => {
   });
 });
 
-// server starten
+// Server starten
 app.listen(PORT, () => {
   console.log(`Server läuft auf http://localhost:${PORT}`);
   console.log(`Health: http://localhost:${PORT}/api/health`);
