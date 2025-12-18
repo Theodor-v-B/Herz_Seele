@@ -7,17 +7,38 @@ export default function Signs() {
         <div className="cards-3">
           <article className="card feature">
             <h3>Stimmung</h3>
-            <p>Anhaltende Niedergeschlagenheit, Hoffnungslosigkeit, Reizbarkeit.</p>
+            <p>
+              Menschen mit Depressionen erleben häufig eine anhaltende
+              Niedergeschlagenheit, die sich nicht einfach „abschütteln“ lässt.
+              Gefühle von Hoffnungslosigkeit, innerer Leere oder Wertlosigkeit
+              können den Alltag stark belasten. Auch Reizbarkeit oder eine
+              ungewöhnlich geringe Belastbarkeit gehören dazu. Diese Stimmung
+              hält meist über einen längeren Zeitraum an.
+            </p>
           </article>
 
           <article className="card feature">
             <h3>Interesse & Energie</h3>
-            <p>Weniger Freude an Dingen, die früher wichtig waren, starke Erschöpfung.</p>
+            <p>
+              Viele Betroffene verlieren das Interesse an Dingen, die früher
+              Freude bereitet haben – etwa Hobbys, soziale Kontakte oder
+              alltägliche Aktivitäten. Gleichzeitig tritt oft eine starke
+              Erschöpfung auf. Selbst kleine Aufgaben können überwältigend wirken,
+              und es fällt schwer, den Alltag zu bewältigen oder überhaupt
+              anzufangen.
+            </p>
           </article>
 
           <article className="card feature">
             <h3>Schlaf & Körper</h3>
-            <p>Schlafprobleme, Appetitveränderungen, körperliche Beschwerden ohne klare Ursache.</p>
+            <p>
+              Depressionen zeigen sich häufig auch körperlich. Dazu zählen
+              Schlafprobleme wie Ein- oder Durchschlafstörungen, frühes Erwachen
+              oder übermäßiges Schlafbedürfnis. Zusätzlich können
+              Appetitveränderungen, Konzentrationsprobleme oder körperliche
+              Beschwerden auftreten, für die es keine klare medizinische Ursache
+              gibt.
+            </p>
           </article>
         </div>
       </div>
