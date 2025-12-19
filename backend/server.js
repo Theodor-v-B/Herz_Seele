@@ -48,7 +48,7 @@ async function initDb() {
   }
 }
 
-// ✅ Route: PLZ ODER Stadt (oder beides)
+// Route: PLZ ODER Stadt (oder beides)
 app.get("/api/anlaufstellen", async (req, res) => {
   try {
     const plz = String(req.query.plz || "").trim();

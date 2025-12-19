@@ -4,10 +4,10 @@ export default function FindHelp() {
   const [plz, setPlz] = useState("");
   const [stadt, setStadt] = useState("");
   const [results, setResults] = useState([]);
-  const [status, setStatus] = useState("idle"); // idle | loading | done | error
+  const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
 
-  // 🔹 Backend-URL konfigurierbar (Docker / Azure)
+  // Backend-URL konfigurierbar (Docker / Azure)
   const API_BASE =
     import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
