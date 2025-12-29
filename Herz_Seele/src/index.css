@@ -259,6 +259,18 @@ a{ color:inherit; text-decoration:none; }
 .footer-inner{ text-align:center; color: var(--muted); }
 .small{ font-size: .92rem; color: var(--muted); }
 
+.footer-link {
+  text-decoration: underline;
+  color: var(--text);
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  text-decoration-thickness: 2px;
+}
+
+
+
 /* ====== Typography ====== */
 h1,h2,h3{ line-height:1.2; margin: 6px 0 10px; }
 h1{ font-size: clamp(1.8rem, 2.6vw + 1rem, 3rem); }
@@ -334,4 +346,71 @@ h3{ font-size: clamp(1.1rem, .8vw + 1rem, 1.3rem); }
 
 .input-plz::placeholder{
   color: rgba(255,255,255,.7);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+/* Header: Navigation + Barrierefreiheit rechts zusammen */
+.header-right{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+}
+
+/* Barrierefreiheit Button: weißer Text */
+.a11y-btn{
+  color: #ffffff;                 /* Schrift weiß */
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08); /* dezenter Glas-Hintergrund */
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease;
+}
+
+.a11y-btn:hover{
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.25);
+}
+
+/* Optional: wenn deine nav-links generell zu grau sind */
+.nav-link{
+  color: var(--text);
+}
+
+/* Dropdown/Popup */
+.accessibility{
+  position: relative;
+}
+
+.a11y-menu{
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: min(320px, 86vw);
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(180deg, rgba(10,16,28,.92), rgba(10,16,28,.78));
+  border: 1px solid rgba(255,255,255,.10);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.a11y-title{
+  margin: 0 0 10px 0;
+  font-weight: 700;
+}
+
+.a11y-action{
+  width: 100%;
+}
+
+.a11y-btn{
+  box-shadow: 0 0 0 1px rgba(120,255,214,.25);
 }

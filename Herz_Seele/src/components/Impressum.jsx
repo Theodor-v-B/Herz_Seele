@@ -27,6 +27,7 @@ export default function Impressum() {
         Die bereitgestellten Inhalte dienen ausschließlich Informationszwecken
         und ersetzen keine professionelle medizinische oder psychologische Beratung.
       </p>
+
     </section>
   );
 }

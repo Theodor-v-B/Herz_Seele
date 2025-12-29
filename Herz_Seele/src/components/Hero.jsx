@@ -15,8 +15,8 @@ export default function Hero() {
         </div>
 
         <p className="disclaimer">
-          Hinweis: Diese Seite ersetzt keine ärztliche Diagnose. Bei akuter Krise wende dich an den Notruf (112)
-          oder den ärztlichen Bereitschaftsdienst (116 117).
+          Hinweis: Diese Seite ersetzt keine ärztliche Diagnose. Diese Webseite kann keine Soforthilfe in akuten Krisen leisten.<br />
+          Wenn Sie sich in einer lebensbedrohlichen Situation befinden, wenden Sie sich an die von uns verlinkten Seiten.
         </p>
       </div>
 
