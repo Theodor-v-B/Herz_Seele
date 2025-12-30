@@ -63,7 +63,7 @@ export default function Header() {
 
   function setLanguage(next) {
     i18n.changeLanguage(next);
-    stopReading(); // damit es nicht gemischt vorliest
+    stopReading(); // koordiniert vorlesen
     setLangOpen(false);
   }
 
@@ -85,7 +85,7 @@ export default function Header() {
             <a href="#ressourcen" className="nav-link">{t("nav.contacts")}</a>
           </nav>
 
-          {/* Sprache Menü */}
+          {/* lang menu */}
           <div className="lang" ref={langRef}>
             <button
               type="button"
