@@ -6,24 +6,27 @@ export default function Header() {
   const location = useLocation();
   const { t, i18n } = useTranslation();
 
+  // UI state: zwei Popups + ob gerade vorgelesen wird
   const [a11yOpen, setA11yOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [ttsOn, setTtsOn] = useState(false);
 
+  // Refs für "klick außerhalb schließt Popup"
   const a11yRef = useRef(null);
   const langRef = useRef(null);
 
-  // Klick außerhalb -> Menüs schließen
+  // Schließt Menüs bei Klick außerhalb
   useEffect(() => {
     function onDocClick(e) {
       if (a11yRef.current && !a11yRef.current.contains(e.target)) setA11yOpen(false);
       if (langRef.current && !langRef.current.contains(e.target)) setLangOpen(false);
     }
+
     document.addEventListener("mousedown", onDocClick);
     return () => document.removeEventListener("mousedown", onDocClick);
   }, []);
 
-  // Routewechsel -> Popups zu + TTS stoppen
+  // Beim Seitenwechsel: Popups schließen + Vorlesen stoppen
   useEffect(() => {
     setA11yOpen(false);
     setLangOpen(false);
@@ -31,10 +34,12 @@ export default function Header() {
     setTtsOn(false);
   }, [location.pathname]);
 
+  // i18n-Sprache -> TTS-Stimme/Locale
   function currentTtsLang() {
     if (i18n.language === "en") return "en-US";
     if (i18n.language === "fi") return "fi-FI";
     if (i18n.language === "tr") return "tr-TR";
+    if (i18n.language === "ar") return "ar-SA";
     return "de-DE";
   }
 
@@ -43,10 +48,11 @@ export default function Header() {
     const text = (main?.innerText || "").trim();
     if (!text) return;
 
+    // Safety: alles stoppen, bevor neu vorgelesen wird
     window.speechSynthesis.cancel();
 
     const utter = new SpeechSynthesisUtterance(text);
-    utter.lang = currentTtsLang(); // Sprache abhängig von i18n und eher was dein Betriebssystem für eine Sprache hat
+    utter.lang = currentTtsLang();
     utter.rate = 1;
     utter.pitch = 1;
 
@@ -64,47 +70,48 @@ export default function Header() {
 
   function setLanguage(next) {
     i18n.changeLanguage(next);
-    stopReading();       // wichtig: sonst liest es gemischt weiter
-    setLangOpen(false);
+    stopReading();      // sonst mischt TTS zwei Sprachen
+    setLangOpen(false); // UX: Menü direkt schließen
   }
 
-  const langLabel = i18n.language?.toUpperCase?.() || "DE";
+  const langLabel = (i18n.language || "de").toUpperCase();
 
   return (
     <header className="site-header glass">
       <div className="container header-inner">
-        <Link to="/" className="brand" aria-label={t("nav.homeAria") || "Zur Startseite"}>
+        <Link to="/" className="brand" aria-label="Zur Startseite">
           <span className="logo" aria-hidden="true">🌿</span>
           <span className="brand-name">Herz&Seele</span>
         </Link>
 
         <div className="header-right">
-          <nav className="nav" aria-label={t("nav.aria") || "Hauptnavigation"}>
+          <nav className="nav" aria-label="Hauptnavigation">
             <a href="#was-ist" className="nav-link">{t("nav.whatIs")}</a>
             <a href="#zeichen" className="nav-link">{t("nav.signs")}</a>
             <a href="#hilfe" className="nav-link">{t("nav.help")}</a>
             <a href="#ressourcen" className="nav-link">{t("nav.contacts")}</a>
           </nav>
 
-          {/* Sprachmenü */}
+          {/* Sprache */}
           <div className="lang" ref={langRef}>
             <button
               type="button"
-              className="nav-link lang-btn"
+              className="nav-link pill-btn lang-btn"
               aria-haspopup="menu"
               aria-expanded={langOpen}
-              onClick={() => setLangOpen(v => !v)}
+              onClick={() => setLangOpen((v) => !v)}
               title={t("lang.label")}
             >
               🌐 {langLabel}
             </button>
 
             {langOpen && (
-              <div className="lang-menu" role="menu" aria-label={t("lang.label")}>
-                <button className="lang-item" onClick={() => setLanguage("de")}>DE</button>
-                <button className="lang-item" onClick={() => setLanguage("en")}>EN</button>
-                <button className="lang-item" onClick={() => setLanguage("fi")}>FI</button>
-                <button className="lang-item" onClick={() => setLanguage("tr")}>TR</button>
+              <div className="popup-menu lang-menu" role="menu" aria-label={t("lang.label")}>
+                <button className="menu-item" onClick={() => setLanguage("de")}>DE</button>
+                <button className="menu-item" onClick={() => setLanguage("en")}>EN</button>
+                <button className="menu-item" onClick={() => setLanguage("fi")}>FI</button>
+                <button className="menu-item" onClick={() => setLanguage("tr")}>TR</button>
+                <button className="menu-item" onClick={() => setLanguage("ar")}>AR</button>
               </div>
             )}
           </div>
@@ -113,16 +120,16 @@ export default function Header() {
           <div className="accessibility" ref={a11yRef}>
             <button
               type="button"
-              className="nav-link a11y-btn"
+              className="nav-link pill-btn a11y-btn"
               aria-haspopup="menu"
               aria-expanded={a11yOpen}
-              onClick={() => setA11yOpen(v => !v)}
+              onClick={() => setA11yOpen((v) => !v)}
             >
               🔊 {t("nav.a11y")}
             </button>
 
             {a11yOpen && (
-              <div className="a11y-menu" role="menu" aria-label={t("nav.a11y")}>
+              <div className="popup-menu a11y-menu" role="menu" aria-label={t("nav.a11y")}>
                 <p className="a11y-title">{t("nav.ttsTitle")}</p>
 
                 {!ttsOn ? (
@@ -141,7 +148,6 @@ export default function Header() {
               </div>
             )}
           </div>
-
         </div>
       </div>
     </header>

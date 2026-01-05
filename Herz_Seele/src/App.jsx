@@ -1,3 +1,9 @@
+/**
+ * Herz&Seele – Studienprojekt (Modul 4)
+ * Autor: Marcel Pinkert, Theodor von Brentano
+ * Stand: 2026-01-01
+ */
+
 import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
