@@ -85,7 +85,7 @@ export default function Resources() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <h3>Deutsche Depressionsliga e.V.</h3>
+            <h3>Deutsche Depressionsliga e.V</h3>
             <p>{t("resources.desc_depressionsliga")}</p>
             <span className="link-hint">
               {t("resources.openWebsite")}

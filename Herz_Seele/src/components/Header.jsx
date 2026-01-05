@@ -6,27 +6,33 @@ export default function Header() {
   const location = useLocation();
   const { t, i18n } = useTranslation();
 
-  // UI state: zwei Popups + ob gerade vorgelesen wird
   const [a11yOpen, setA11yOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const [ttsOn, setTtsOn] = useState(false);
 
-  // Refs für "klick außerhalb schließt Popup"
   const a11yRef = useRef(null);
   const langRef = useRef(null);
 
-  // Schließt Menüs bei Klick außerhalb
+  // 1) HTML lang/dir automatisch setzen (wichtig für عربى RTL)
+  useEffect(() => {
+    const lang = i18n.language || "de";
+    const isRtl = lang === "ar";
+
+    document.documentElement.lang = lang;
+    document.documentElement.dir = isRtl ? "rtl" : "ltr";
+  }, [i18n.language]);
+
+  // 2) Klick außerhalb -> Menüs schließen
   useEffect(() => {
     function onDocClick(e) {
       if (a11yRef.current && !a11yRef.current.contains(e.target)) setA11yOpen(false);
       if (langRef.current && !langRef.current.contains(e.target)) setLangOpen(false);
     }
-
     document.addEventListener("mousedown", onDocClick);
     return () => document.removeEventListener("mousedown", onDocClick);
   }, []);
 
-  // Beim Seitenwechsel: Popups schließen + Vorlesen stoppen
+  // 3) Routewechsel -> Popups zu + TTS stoppen
   useEffect(() => {
     setA11yOpen(false);
     setLangOpen(false);
@@ -34,12 +40,12 @@ export default function Header() {
     setTtsOn(false);
   }, [location.pathname]);
 
-  // i18n-Sprache -> TTS-Stimme/Locale
   function currentTtsLang() {
     if (i18n.language === "en") return "en-US";
     if (i18n.language === "fi") return "fi-FI";
     if (i18n.language === "tr") return "tr-TR";
     if (i18n.language === "ar") return "ar-SA";
+    if (i18n.language === "ru") return "ru-RU";
     return "de-DE";
   }
 
@@ -48,7 +54,6 @@ export default function Header() {
     const text = (main?.innerText || "").trim();
     if (!text) return;
 
-    // Safety: alles stoppen, bevor neu vorgelesen wird
     window.speechSynthesis.cancel();
 
     const utter = new SpeechSynthesisUtterance(text);
@@ -70,8 +75,8 @@ export default function Header() {
 
   function setLanguage(next) {
     i18n.changeLanguage(next);
-    stopReading();      // sonst mischt TTS zwei Sprachen
-    setLangOpen(false); // UX: Menü direkt schließen
+    stopReading();
+    setLangOpen(false);
   }
 
   const langLabel = (i18n.language || "de").toUpperCase();
@@ -92,14 +97,14 @@ export default function Header() {
             <a href="#ressourcen" className="nav-link">{t("nav.contacts")}</a>
           </nav>
 
-          {/* Sprache */}
+          {/* Language Dropdown */}
           <div className="lang" ref={langRef}>
             <button
               type="button"
               className="nav-link pill-btn lang-btn"
               aria-haspopup="menu"
               aria-expanded={langOpen}
-              onClick={() => setLangOpen((v) => !v)}
+              onClick={() => setLangOpen(v => !v)}
               title={t("lang.label")}
             >
               🌐 {langLabel}
@@ -107,23 +112,26 @@ export default function Header() {
 
             {langOpen && (
               <div className="popup-menu lang-menu" role="menu" aria-label={t("lang.label")}>
-                <button className="menu-item" onClick={() => setLanguage("de")}>DE</button>
-                <button className="menu-item" onClick={() => setLanguage("en")}>EN</button>
-                <button className="menu-item" onClick={() => setLanguage("fi")}>FI</button>
-                <button className="menu-item" onClick={() => setLanguage("tr")}>TR</button>
-                <button className="menu-item" onClick={() => setLanguage("ar")}>AR</button>
+                <button className="menu-item" onClick={() => setLanguage("de")}>Deutsch</button>
+                <button className="menu-item" onClick={() => setLanguage("en")}>English</button>
+                <button className="menu-item" onClick={() => setLanguage("fi")}>Suomeksi</button>
+                <button className="menu-item" onClick={() => setLanguage("tr")}>Türkçe</button>
+                <button className="menu-item" onClick={() => setLanguage("ar")}>العربية</button>
+                <button className="menu-item" onClick={() => setLanguage("ru")}>Русский</button>
+                <button className="menu-item" onClick={() => setLanguage("ukr")}>Українська</button>
+                <button className="menu-item" onClick={() => setLanguage("pl")}>Polski</button>
               </div>
             )}
           </div>
 
-          {/* Barrierefreiheit */}
+          {/* Accessibility Dropdown */}
           <div className="accessibility" ref={a11yRef}>
             <button
               type="button"
               className="nav-link pill-btn a11y-btn"
               aria-haspopup="menu"
               aria-expanded={a11yOpen}
-              onClick={() => setA11yOpen((v) => !v)}
+              onClick={() => setA11yOpen(v => !v)}
             >
               🔊 {t("nav.a11y")}
             </button>

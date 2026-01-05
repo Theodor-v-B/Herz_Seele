@@ -1,0 +1,152 @@
+{
+  "nav": {
+    "whatIs": "Czym jest depresja?",
+    "signs": "Objawy",
+    "help": "Znajdź pomoc",
+    "contacts": "Kontakty",
+    "a11y": "Dostępność",
+    "ttsTitle": "Czytanie na głos (Text-to-Speech)",
+    "ttsStart": "Rozpocznij czytanie",
+    "ttsStop": "Zatrzymaj czytanie",
+    "ttsHint": "Uwaga: funkcja czytania działa w przeglądarce (np. Chrome/Edge) bez instalacji."
+  },
+
+  "hero": {
+    "titleMain": "Zrozumieć depresję.",
+    "titleSoft": "Krok po kroku.",
+    "lead": "Nie jesteś sam. Znajdziesz tu zrozumiałe informacje, pierwsze kroki oraz sprawdzone miejsca pomocy. Małe kroki mają znaczenie.",
+    "ctaHelp": "Znajdź wsparcie",
+    "ctaMore": "Dowiedz się więcej",
+    "disclaimerLine1": "Uwaga: Ta strona nie zastępuje diagnozy lekarskiej ani profesjonalnej pomocy.",
+    "disclaimerLine2": "W sytuacji zagrożenia życia skorzystaj z linków do natychmiastowej pomocy."
+  },
+
+  "whatIs": {
+    "title": "Czym jest depresja?",
+    "text": "Depresja to coś więcej niż chwilowy smutek. Wpływa na nastrój, myśli, ciało i zachowanie przez dłuższy czas i może znacznie utrudniać codzienne życie. Ważne: depresja jest częsta i możliwa do leczenia.",
+    "bullets": [
+      "Może dotknąć każdego – niezależnie od wieku, zawodu czy sytuacji życiowej.",
+      "Powstaje w wyniku połączenia czynników biologicznych, psychologicznych i społecznych.",
+      "Istnieją skuteczne metody leczenia i różne formy wsparcia."
+    ],
+    "selfCheckTitle": "Krótki test orientacyjny",
+    "selfCheckText": "Taki test nie zastępuje diagnozy, ale może być sygnałem, by poszukać pomocy.",
+    "helloBetterText": "HelloBetter to cyfrowa platforma oferująca programy terapii online oparte na dowodach naukowych, pomagające w problemach takich jak stres, depresja, lęk czy zaburzenia snu.",
+    "germanNote": "Uwaga: Linkowane instytucje dotyczą Niemiec i dlatego informacje są głównie w języku niemieckim."
+  },
+
+  "signs": {
+    "title": "Częste objawy",
+    "moodTitle": "Nastrój",
+    "moodText": "Osoby z depresją często odczuwają długotrwałe przygnębienie, którego nie da się łatwo „strząsnąć”. Pojawiają się uczucia beznadziejności, pustki lub bezwartościowości.",
+    "energyTitle": "Zainteresowanie i energia",
+    "energyText": "Wiele osób traci zainteresowanie rzeczami, które wcześniej sprawiały radość. Często towarzyszy temu silne zmęczenie i brak energii.",
+    "sleepTitle": "Sen i ciało",
+    "sleepText": "Depresja może objawiać się również fizycznie – problemami ze snem, apetytem, koncentracją lub niewyjaśnionymi dolegliwościami."
+  },
+
+  "help": {
+    "title": "Znajdź pomoc",
+    "steps": {
+      "talk": "Porozmawiaj z kimś zaufanym lub lekarzem rodzinnym.",
+      "appointment": "Umów się na konsultację terapeutyczną.",
+      "selfcare": "Dbaj o siebie: rytm dnia, sen, ruch i małe cele."
+    },
+    "medicalService": "116 117 – dyżur lekarski",
+    "appointmentSearch": "Wyszukaj termin online",
+    "supportTitle": "Wsparcie",
+    "supportText": "Szybka pomoc w trudnych momentach.",
+    "prevention": "Zapobieganie samobójstwom",
+    "loneliness": "Samotność",
+    "crisis": "Kryzys"
+  },
+
+  "findHelp": {
+    "title": "Znajdź placówki pomocy",
+    "subtitle": "Wyszukaj według kodu pocztowego lub miasta.",
+    "noteDE": "Uwaga: placówki dotyczą Niemiec i są wyświetlane w języku niemieckim.",
+    "plzPlaceholder": "Kod pocztowy (np. 10115)",
+    "cityPlaceholder": "Miasto (np. Berlin)",
+    "search": "Szukaj",
+    "loading": "Wyszukiwanie...",
+    "noResults": "Brak wyników.",
+    "errorEmpty": "Wpisz kod pocztowy lub miasto.",
+    "errorGeneric": "Błąd wyszukiwania",
+    "errorBackend": "Serwer niedostępny"
+  },
+
+  "resources": {
+    "title": "Sprawdzone kontakty",
+    "note": "Uwaga: poniższe instytucje działają w Niemczech, dlatego nazwy i treści są po niemiecku.",
+    "openWebsite": "Otwórz stronę ↗",
+
+    "desc_depressionshilfe": "Informacje, oferty i wskazówki dotyczące pomocy.",
+    "desc_telefonseelsorge": "Całodobowo, anonimowo i bezpłatnie.",
+    "desc_116117": "Placówki umawiania wizyt i dyżur lekarski.",
+    "desc_depressionsliga": "Szybka pomoc w depresji i kryzysie.",
+    "desc_familienportal": "Telefony kryzysowe i wsparcie rodzinne.",
+    "desc_nummergegenkummer": "Pomoc dla dzieci, młodzieży i bliskich."
+  },
+
+  "imprint": {
+    "title": "Informacje prawne",
+    "legal": "Informacje zgodnie z § 5 TMG",
+    "project": "Herz&Seele – projekt szkolny",
+    "contact": "Kontakt:",
+    "email": "E-mail:",
+    "note": "To jest niekomercyjny projekt edukacyjny. Treści mają charakter informacyjny i nie zastępują porady medycznej."
+  },
+
+  "privacy": {
+    "title": "Polityka prywatności",
+    "overviewTitle": "Ochrona danych w skrócie",
+    "overviewText": "Ochrona Twoich danych osobowych jest dla nas bardzo ważna. Traktujemy je poufnie i zgodnie z przepisami prawa.",
+    "noticeTitle": "Ważna informacja:",
+    "noticeText": "Nie zbieramy danych zdrowotnych i nie wymagamy rejestracji.",
+    "controllerTitle": "Administrator danych",
+    "dataCollectionTitle": "Zbieranie danych",
+    "dataCollectionText": "Podczas korzystania ze strony zapisywane są techniczne dane (np. adres IP) w celu zapewnienia bezpieczeństwa.",
+    "sslTitle": "Szyfrowanie SSL/TLS",
+    "sslText": "Strona korzysta z bezpiecznego połączenia szyfrowanego.",
+    "disclaimerTitle": "Wyłączenie odpowiedzialności",
+    "disclaimerText": "Informacje mają charakter ogólny i nie stanowią porady medycznej.",
+    "rightsTitle": "Twoje prawa",
+    "rightsText": "Masz prawo do informacji, poprawy i usunięcia swoich danych."
+  },
+
+  "copyright": {
+    "title": "Prawa autorskie i warunki użytkowania",
+    "s1Title": "Prawa autorskie",
+    "s1Text1": "Treści na tej stronie podlegają niemieckiemu prawu autorskiemu.",
+    "s1Text2": "Kopiowanie dozwolone jest wyłącznie do użytku prywatnego.",
+    "s2Title": "Prawa osób trzecich",
+    "s2Text1": "Prawa autorskie osób trzecich są respektowane.",
+    "s2Text2": "W przypadku naruszeń prosimy o kontakt.",
+    "s3Title": "Źródła obrazów",
+    "s3Text": "Użyte obrazy pochodzą z:",
+    "s3List": ["Własne zdjęcia", "Unsplash", "Pixabay"],
+    "s3Note": "Mogą obowiązywać dodatkowe warunki licencji.",
+    "s4Title": "Linkowanie",
+    "s4Text": "Linkowanie jest dozwolone, osadzanie treści bez zgody – zabronione."
+  },
+
+  "footer": {
+    "copyright": "Strona informacyjna o depresji.",
+    "disclaimer": "Strona nie zastępuje profesjonalnej terapii.",
+    "impressum": "Nota prawna",
+    "privacy": "Prywatność",
+    "copyrightLink": "Prawa autorskie"
+  },
+
+  "lang": {
+    "label": "Język",
+    "de": "DE",
+    "en": "EN",
+    "fi": "FI",
+    "tr": "TR",
+    "ar": "AR",
+    "ru": "RU",
+    "uk": "UA",
+    "pl": "PL"
+  }
+}
