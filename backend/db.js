@@ -1,7 +1,7 @@
 const { Pool } = require("pg");
 
 const pool = new Pool({
-    host: process.env.PGHOST || "localhost",
+    host: process.env.PGHOST || "postgres",
     user: process.env.PGUSER || "postgres",
     password: process.env.PGPASSWORD || "password",
     database: process.env.PGDATABASE || "anlaufstellen",
