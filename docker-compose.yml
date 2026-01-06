@@ -23,7 +23,7 @@ services:
     depends_on:
       - postgres
   frontend:
-    build: ./Herz_Seele
+    build: ./frontend
     container_name: anlaufstellen-frontend
     ports:
       - "80:80"

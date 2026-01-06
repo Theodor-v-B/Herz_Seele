@@ -1,0 +1,31 @@
+#cloud-config
+package_update: true
+packages:
+  - docker.io
+  - docker-compose
+  - git
+
+runcmd:
+  # Docker starten
+  - systemctl enable docker
+  - systemctl start docker
+
+  # Repo klonen
+  - git clone https://github.com/Theodor-v-B/Herz_Seele.git /opt/app
+
+  # .env anlegen
+  - |
+    cat <<EOF > /opt/app/.env
+    POSTGRES_USER=admin
+    POSTGRES_PASSWORD=password123
+    POSTGRES_DB=anlaufstellen
+
+    PGHOST=localhost
+    PGUSER=admin
+    PGPASSWORD=password123
+    PGDATABASE=anlaufstellen
+    PGPORT=5432
+    EOF
+
+  # Container starten
+  - cd /opt/app && docker-compose up -d --build
