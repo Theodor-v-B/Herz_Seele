@@ -21,7 +21,8 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - postgres
+      - postgres:
+          condition: service_healthy
   frontend:
     build: ./frontend
     container_name: anlaufstellen-frontend
