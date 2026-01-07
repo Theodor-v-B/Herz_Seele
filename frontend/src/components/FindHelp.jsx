@@ -116,7 +116,7 @@ export default function FindHelp() {
         />
 
         <input
-          className="btn"
+          className="btn input-stadt"
           style={{ borderRadius: "14px" }}
           value={stadt}
           onChange={(e) => setStadt(e.target.value)}
