@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Debug: check secret presence"
+        shell: bash
         env:
           VM_IP: ${{ secrets.VM_IP }}
           VM_USERNAME: ${{ secrets.VM_USERNAME }}
