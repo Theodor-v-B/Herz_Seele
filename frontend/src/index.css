@@ -443,7 +443,7 @@ input.btn {
 
 /* Inputs “wie Buttons” */
 .btn.input-plz {
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(50, 255, 194, 0.62);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: var(--text);
 }
