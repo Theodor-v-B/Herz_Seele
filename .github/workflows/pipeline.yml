@@ -1,4 +1,4 @@
-name: Deploy to Azure VM (Docker Compose)
+name: "Deploy to Azure VM (Docker Compose)"
 
 on:
   push:
@@ -12,28 +12,34 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Debug: check secret presence
+      - name: "Debug: check secret presence"
+        env:
+          VM_IP: ${{ secrets.VM_IP }}
+          VM_USERNAME: ${{ secrets.VM_USERNAME }}
+          VM_SSH_KEY: ${{ secrets.VM_SSH_KEY }}
         run: |
-          if [ -z "${{ secrets.VM_IP }}" ]; then
+          if [ -z "$VM_IP" ]; then
             echo "VM_IP is MISSING/EMPTY"
             exit 1
           else
             echo "VM_IP is present"
           fi
-          if [ -z "${{ secrets.VM_USERNAME }}" ]; then
+
+          if [ -z "$VM_USERNAME" ]; then
             echo "VM_USERNAME is MISSING/EMPTY"
             exit 1
           else
             echo "VM_USERNAME is present"
           fi
-          if [ -z "${{ secrets.VM_SSH_KEY }}" ]; then
+
+          if [ -z "$VM_SSH_KEY" ]; then
             echo "VM_SSH_KEY is MISSING/EMPTY"
             exit 1
           else
             echo "VM_SSH_KEY is present"
           fi
 
-      - name: Deploy via SSH
+      - name: "Deploy via SSH"
         uses: appleboy/ssh-action@v1.2.4
         with:
           host: ${{ secrets.VM_IP }}
