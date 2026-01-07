@@ -41,7 +41,7 @@ export default function Impressum() {
         <br />
         Marcel Pinkert
         <br />
-        Theodor von Brentano
+        Theo von Brentano
       </p>
 
       {/* ======================================================
