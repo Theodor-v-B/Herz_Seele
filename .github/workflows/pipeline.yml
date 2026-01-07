@@ -1,0 +1,36 @@
+name: Deploy to Azure VM
+
+on:
+  push:
+    branches: ["main"]
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.4
+        with:
+          host: ${{ secrets.VM_IP }}
+          username: ${{ secrets.VM_USERNAME }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          script_stop: true
+          script: |
+            set -euo pipefail
+
+            cd /opt/app
+
+            git fetch --all --prune
+            git reset --hard origin/main
+
+            docker compose down
+            docker compose up -d --build
+
+            docker compose ps
+
+            echo "Deployment completed successfully."
