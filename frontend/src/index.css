@@ -430,7 +430,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ====== Input Felder ====== */
 input.btn {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(50, 255, 194, 0.62);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
