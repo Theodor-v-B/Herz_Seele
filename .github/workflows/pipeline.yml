@@ -48,8 +48,12 @@ jobs:
           script: |
             set -euo pipefail
             cd /opt/app
+
+            git config --global --add safe.directory /opt/app
+
             git fetch --all --prune
             git reset --hard origin/main
+            
             docker compose up -d --build
             docker compose ps
  
