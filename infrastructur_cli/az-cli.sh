@@ -10,9 +10,11 @@ az vm create \
   --nsg-rule SSH \
   --custom-data cloud-init.yaml \
   --nic-delete-option delete \
-  --os-disk-delete-option delete
+  --os-disk-delete-option delete \
+  -o none
 
   az vm open-port \
   --resource-group rg-25-01-on-von-brentano-theodor \
   --name herz-seele-vm \
-  --port 80
+  --port 80 \
+  -o none

@@ -3,29 +3,22 @@ package_update: true
 package_upgrade: true
 
 packages:
-  - docker.io
   - git
+  - apt-transport-https
+  - ca-certificates
   - curl
+  - gnupg
+  - lsb-release
 
 runcmd:
-  # Docker starten
-  - systemctl enable docker
-  - systemctl start docker
-
-  # FALSCHE / ALTE Compose-Plugins entfernen (wichtig!)
-  - rm -f /usr/local/lib/docker/cli-plugins/docker-compose
-  - rm -f /usr/libexec/docker/cli-plugins/docker-compose
-  - rm -f /root/.docker/cli-plugins/docker-compose
-  - rm -f /home/azureuser/.docker/cli-plugins/docker-compose
-
-  # Docker Compose v2 OFFIZIELL installieren (systemweit)
-  - mkdir -p /usr/local/lib/docker/cli-plugins
-  - curl -SL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-x86_64 \
-      -o /usr/local/lib/docker/cli-plugins/docker-compose
-  - chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
-
-  # Version prüfen (Debug – erscheint in cloud-init logs)
-  - docker compose version
+  # Docker GPG Key und Repo
+  - mkdir -p /etc/apt/keyrings
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+  - echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+  
+  # Installation von Docker und Compose V2
+  - apt-get update
+  - apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
   # Repo klonen
   - rm -rf /opt/app
@@ -37,8 +30,6 @@ runcmd:
     POSTGRES_USER=admin
     POSTGRES_PASSWORD=password123
     POSTGRES_DB=anlaufstellen
-
-    # WICHTIG: Service-Name, nicht localhost
     PGHOST=postgres
     PGUSER=admin
     PGPASSWORD=password123
@@ -46,5 +37,5 @@ runcmd:
     PGPORT=5432
     EOF
 
-  # Container starten (ECHTES Compose v2)
+  # Container starten
   - cd /opt/app && docker compose up -d --build
