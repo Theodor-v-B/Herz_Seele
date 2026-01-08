@@ -47,6 +47,7 @@ jobs:
           key: ${{ secrets.VM_SSH_KEY }}
           script: |
             set -euo pipefail
+            git config --global --add safe.directory /opt/app
             cd /opt/app
 
             git fetch --all --prune
