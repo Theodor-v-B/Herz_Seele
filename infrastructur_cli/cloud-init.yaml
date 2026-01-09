@@ -25,6 +25,9 @@ runcmd:
   - rm -rf /opt/app
   - git clone https://github.com/Theodor-v-B/Herz_Seele.git /opt/app
 
+  # Erst HTTP-only NGINX config aktivieren (damit Container nicht crasht)
+  - cp /opt/app/frontend/nginx-http.conf /opt/app/frontend/nginx.conf
+
   # .env anlegen
   - |
     cat <<EOF > /opt/app/.env
@@ -41,16 +44,23 @@ runcmd:
   # Container starten
   - cd /opt/app && docker compose up -d --build
 
-  # Erzeuge das Zertifikat im /cert/www-Ordner
+  # Zertifikat holen (mit Retry)
   - |
     DOMAIN="schrittnachvorn.de"
-    certbot certonly --webroot \
-      -w /opt/app/certbot/www \
-      -d "$DOMAIN" \
-      -d "www.$DOMAIN" \
-      --agree-tos \
-      -m "admin@$DOMAIN" \
-      --non-interactive || true
+    for i in 1 2 3 4 5; do
+      certbot certonly --webroot \
+        -w /opt/app/certbot/www \
+        -d "$DOMAIN" \
+        -d "www.$DOMAIN" \
+        --agree-tos \
+        -m "admin@$DOMAIN" \
+        --non-interactive && break
+      sleep 15
+    done
+
+  # HTTPS config aktivieren und frontend neu starten
+  - cp /opt/app/frontend/nginx-https.conf /opt/app/frontend/nginx.conf
+  - cd /opt/app && docker compose up -d --build
 
   # Frontend/NGINX neu starten, damit er die Zertifikate laden kann
   # Er mountet den Ordner /cert/www in den Container
