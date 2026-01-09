@@ -10,6 +10,15 @@ Willkommen bei "Herz & Seele"! Dieses Projekt ist eine einfache Website, die Men
 
 Das Projekt läuft in sogenannten "Containern" (kleine, isolierte Umgebungen), um es einfach zu starten und zu verwalten.
 
+## Technologien
+
+Das Projekt verwendet moderne Webtechnologien:
+- **Frontend:** React mit Vite für eine schnelle und benutzerfreundliche Website.
+- **Backend:** Node.js mit Express für den Server und PostgreSQL als Datenbank.
+- **Containerisierung:** Docker und Docker Compose für einfache Bereitstellung.
+- **Mehrsprachigkeit:** Unterstützung für Deutsch, Englisch, Arabisch, Finnisch, Polnisch, Russisch, Türkisch und Ukrainisch mit i18next.
+- **CI/CD-Pipeline:** Automatisiert den Build, Test und Deployment-Prozess, um sicherzustellen, dass Code-Änderungen schnell überprüft und zuverlässig in Produktion bereitgestellt werden.
+
 ## Für wen ist diese Website gedacht?
 
 Die Website richtet sich an alle, die Informationen über Depressionen suchen oder Hilfe brauchen. Sie ist besonders nützlich für:
@@ -25,7 +34,6 @@ Um die Website lokal auf deinem Computer zu starten, folge diesen einfachen Schr
 
 ### Was brauchst du?
 - **Docker:** Ein Programm, das "Container" (wie kleine virtuelle Maschinen) auf deinem Computer laufen lässt. Es ist kostenlos und einfach zu installieren. Besuche [docker.com](https://www.docker.com/) und lade die Desktop-Version für Windows herunter.
-- **Node.js:** Eine Software, die für die Website benötigt wird. Lade sie von [nodejs.org](https://nodejs.org/) herunter (empfohlen: die LTS-Version).
 
 ### Schritt-für-Schritt-Anleitung
 1. **Lade das Projekt herunter:** Stelle sicher, dass du alle Dateien aus diesem Ordner hast.
@@ -42,28 +50,24 @@ Um die Website lokal auf deinem Computer zu starten, folge diesen einfachen Schr
    ```
    docker-compose up -d
    ```
-   Das startet die Datenbank und den Server im Hintergrund.
+   Das startet die Datenbank, den Server und die Website im Hintergrund. Warte ein paar Minuten, bis alles bereit ist.
 
-4. **Starte die Website:** Gehe in den Ordner `backend` und gib ein:
-   ```
-   cd backend
-   npm install
-   node server.js
-   ```
-   Das startet den Server.
+4. **Öffne die Website:** Öffne deinen Browser und gehe zu `http://localhost`. Die Website sollte nun laufen.
 
-5. **Öffne die Website:** Gehe in den Ordner `Herz_Seele` und gib ein:
-   ```
-   cd Herz_Seele
-   npm install
-   npm run dev
-   ```
-   Öffne deinen Browser und gehe zu der Adresse, die angezeigt wird (meist `http://localhost:5173`).
-
-Fertig! Die Website sollte nun in deinem Browser laufen.
+Fertig! Wenn du Änderungen am Code machen möchtest, kannst du die Container stoppen mit `docker-compose down` und neu starten.
 
 ### Alternative: Ohne Docker (für Fortgeschrittene)
-Wenn du Docker nicht verwenden möchtest, kannst du eine lokale Datenbank (z.B. PostgreSQL) installieren. Das ist aber komplizierter und wird hier nicht im Detail erklärt.
+Wenn du Docker nicht verwenden möchtest, musst du PostgreSQL lokal installieren und die Anwendungen manuell starten. Das ist aber komplizierter und wird hier nicht im Detail erklärt.
+
+## Produktions-Deployment
+
+Für den Betrieb in der Cloud (z.B. auf Azure) gibt es vorgefertigte Docker-Images und Scripts:
+
+1. **Mit Docker Compose (Produktion):** Verwende `docker-compose.prod.yml` anstelle von `docker-compose.yml`. Stelle sicher, dass die `.env`-Datei mit sicheren Passwörtern konfiguriert ist.
+
+2. **Azure Cloud:** Im Ordner `infrastructur_cli/` findest du Scripts für die Bereitstellung auf Microsoft Azure. Diese automatisieren die Einrichtung von virtuellen Maschinen und Containern in der Cloud.
+
+Für detaillierte Anleitungen zu Cloud-Deployment schaue in die Scripts oder die Dokumentation im `infrastructur_cli/` Ordner.
 
 ## Häufige Probleme und Lösungen
 
@@ -73,10 +77,18 @@ Wenn du Docker nicht verwenden möchtest, kannst du eine lokale Datenbank (z.B. 
 
 ## Mehr Informationen
 
-- Die Website unterstützt mehrere Sprachen: Deutsch, Englisch, Arabisch, Finnisch, Polnisch, Russisch, Türkisch und Ukrainisch.
+- Die Website unterstützt mehrere Sprachen: Deutsch, Englisch, Arabisch, Finnisch, Polnisch, Russisch, Türkisch und Ukrainisch. Du kannst die Sprache im Browser wechseln.
+- Das Projekt ist Open-Source und wird kontinuierlich verbessert.
 
-Wenn du Fragen hast oder helfen möchtest, das Projekt zu verbessern, melde dich gerne!
+## Was kann ich beitragen?
+
+Wenn du helfen möchtest, das Projekt zu verbessern:
+- Melde Fehler oder Vorschläge als Issue auf GitHub.
+- Erstelle Pull Requests für Code-Verbesserungen.
+- Übersetze die Website in weitere Sprachen oder verbessere bestehende Übersetzungen.
+
+Wenn du Fragen hast, melde dich gerne!
 
 ---
 
-*Dieses Projekt ist ein Lernprojekt und wird kontinuierlich verbessert.*
+*Dieses Projekt ist ein Aschlussprojekt und wird kontinuierlich verbessert.*
